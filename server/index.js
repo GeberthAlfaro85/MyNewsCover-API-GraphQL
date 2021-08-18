@@ -17,6 +17,26 @@ const getNews = () => {
   })
 };
 
+const getNewsByUser = async (req) => {
+  console.log(req);
+  return News.find( {"user_id": req.user_id},function (err, news) {
+    if (err) {
+      return "There was an error"
+    }
+    return news;
+  })
+};
+
+const searchNews = async (req) => {
+  console.log(req);
+  return News.find( {"user_id": req.user_id, "title": req.title, "short_description": req.short_description},function (err, news) {
+    if (err) {
+      return "There was an error"
+    }
+    return news;
+  })
+};
+
 const createProduct = async (req) => {
   const product = new Product();
 
@@ -38,7 +58,8 @@ const createProduct = async (req) => {
 // graphQL service
 const root = {
   //Queries
-  news: () => getNews(),
+  news: (req) => getNewsByUser(req),
+  searchNews: (req) => searchNews(req),
 
   //Mutations
   createProduct: (req) => createProduct(req)

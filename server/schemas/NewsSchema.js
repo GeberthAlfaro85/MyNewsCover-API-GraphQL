@@ -1,7 +1,8 @@
 const { buildSchema } = require('graphql');
 exports.graphQLschema = buildSchema(`
   type Query {
-    news: [News]
+    news(user_id: String): [News]
+    searchNews(user_id: String, title: String, short_description: String): [News]
   }
 
   type Mutation {
