@@ -29,7 +29,7 @@ const getNewsByUser = async (req) => {
 
 const searchNews = async (req) => {
   console.log(req);
-  return News.find( {"user_id": req.user_id, "title": req.title, "short_description": req.short_description},function (err, news) {
+  return News.find( {"user_id": req.user_id, "title": new RegExp(req.title, 'i')},function (err, news) {
     if (err) {
       return "There was an error"
     }
