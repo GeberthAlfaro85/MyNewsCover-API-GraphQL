@@ -37,6 +37,16 @@ const searchNews = async (req) => {
   })
 };
 
+const tagsNews = async (req) => {
+  console.log(req);
+  return News.find( {"user_id": req.user_id, "tags": {$in: [req.tags] }},function (err, news) {
+    if (err) {
+      return "There was an error"
+    }
+    return news;
+  })
+};
+
 const createProduct = async (req) => {
   const product = new Product();
 
@@ -60,7 +70,7 @@ const root = {
   //Queries
   news: (req) => getNewsByUser(req),
   searchNews: (req) => searchNews(req),
-
+  tagsNews: (req) => tagsNews(req),
   //Mutations
   createProduct: (req) => createProduct(req)
 };

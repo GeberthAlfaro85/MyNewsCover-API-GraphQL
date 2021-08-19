@@ -3,6 +3,7 @@ exports.graphQLschema = buildSchema(`
   type Query {
     news(user_id: String): [News]
     searchNews(user_id: String, title: String): [News]
+    tagsNews(user_id: String, tags: String): [News]
   }
 
   type Mutation {
