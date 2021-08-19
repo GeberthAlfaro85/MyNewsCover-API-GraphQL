@@ -8,7 +8,8 @@ const news = new Schema ({
     date: {type: String},
     news_source_id : {type: String},
     user_id: {type: String},
-    category_id: {type: String}
+    category_id: {type: String},
+    tags: {type: []}
 });
 
 module.exports = mongoose.model("news", news);

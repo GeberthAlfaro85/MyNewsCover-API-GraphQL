@@ -19,4 +19,5 @@ exports.graphQLschema = buildSchema(`
     news_source_id: String!
     user_id: String!
     category_id: String!
+    tags: [String!]
   }`);
