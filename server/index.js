@@ -8,18 +8,9 @@ const News = require("./models/newsModel");
 
 // functions
 
+
 const getNews = () => {
   return News.find(function (err, news) {
-    if (err) {
-      return "There was an error"
-    }
-    return news;
-  })
-};
-
-const getNewsByUser = async (req) => {
-  console.log(req);
-  return News.find( {"user_id": req.user_id},function (err, news) {
     if (err) {
       return "There was an error"
     }
@@ -47,13 +38,22 @@ const tagsNews = async (req) => {
   })
 };
 
+const getNewsByUser = async (req) => {
+  console.log(req);
+  return News.find( {"user_id": req.user_id},function (err, news) {
+    if (err) {
+      return "There was an error"
+    }
+    return news;
+  })
+};
+
 const createProduct = async (req) => {
   const product = new Product();
 
   product.quantity = req.quantity;
   product.name = req.name;
   product.price = req.price;
-
 
   const guardar = await product.save();
 
