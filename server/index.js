@@ -8,7 +8,7 @@ const News = require("./models/newsModel");
 
 // functions
 
-
+//Gets all news 
 const getNews = () => {
   return News.find(function (err, news) {
     if (err) {
@@ -18,26 +18,7 @@ const getNews = () => {
   })
 };
 
-const searchNews = async (req) => {
-  console.log(req);
-  return News.find( {"user_id": req.user_id, "title": new RegExp(req.title, 'i')},function (err, news) {
-    if (err) {
-      return "There was an error"
-    }
-    return news;
-  })
-};
-
-const tagsNews = async (req) => {
-  console.log(req);
-  return News.find( {"user_id": req.user_id, "tags": {$in: [req.tags] }},function (err, news) {
-    if (err) {
-      return "There was an error"
-    }
-    return news;
-  })
-};
-
+//Gets the news for UserID
 const getNewsByUser = async (req) => {
   console.log(req);
   return News.find( {"user_id": req.user_id},function (err, news) {
@@ -48,12 +29,36 @@ const getNewsByUser = async (req) => {
   })
 };
 
+//Searches specific news
+const searchNews = async (req) => {
+  console.log(req);
+  return News.find( {"user_id": req.user_id, "title": new RegExp(req.title, 'i')},function (err, news) {
+    if (err) {
+      return "There was an error"
+    }
+    return news;
+  })
+};
+
+//Gets all news tasks
+const tagsNews = async (req) => {
+  console.log(req);
+  return News.find( {"user_id": req.user_id, "tags": {$in: [req.tags] }},function (err, news) {
+    if (err) {
+      return "There was an error"
+    }
+    return news;
+  })
+};
+
+//Creates all Products
 const createProduct = async (req) => {
   const product = new Product();
 
   product.quantity = req.quantity;
   product.name = req.name;
   product.price = req.price;
+
 
   const guardar = await product.save();
 

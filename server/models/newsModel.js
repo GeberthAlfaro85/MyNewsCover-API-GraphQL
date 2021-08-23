@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//creates de database schema and its structure
 const news = new Schema ({
     title: {type: String},
     short_description: {type: String},
